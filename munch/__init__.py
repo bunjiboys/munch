@@ -230,7 +230,7 @@ def munchify(x):
 
         nb. As dicts are not hashable, they cannot be nested in sets/frozensets.
     """
-    if isinstance(x, collections.MutableMapping):
+    if issubclass(x, collections.MutableMapping):
         return Munch((k, munchify(v)) for k, v in iteritems(x))
     elif isinstance(x, (list, tuple)):
         return type(x)(munchify(v) for v in x)
